@@ -1,0 +1,4 @@
+INHERIT: mkdocs.yml
+
+# Staging-specific overrides
+site_name: "[STAGING] RZ/G3E NPU (Ethos-U55) Support Documentation"

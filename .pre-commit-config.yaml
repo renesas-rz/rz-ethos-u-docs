@@ -1,0 +1,49 @@
+repos:
+  # General hygiene: whitespace, line endings, YAML validity
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+      - id: check-added-large-files
+        args: ["--maxkb=5120"]
+      - id: check-yaml
+        args:
+        - --unsafe # This is needed to avoid: could not determine a constructor for the tag 'tag:yaml.org,2002:python/name:material.extensions.emoji.twemoji'
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-vcs-permalinks
+
+  # YAML linting beyond syntax
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: ["-d", "relaxed"]
+        files: "\\.(yaml|yml)$"
+
+  # Markdown formatter
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.19
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-gfm
+          - mdformat-frontmatter
+          - mdformat-mkdocs
+        files: "\\.(md|markdown)$"
+
+  # Typos
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+        args:
+          - --skip=.git,site,venv,**/*.svg,**/*.png,**/*.jpg
+          - --write-changes
+          - -L mot
+        additional_dependencies: []  # keep default dictionary
+        stages: [pre-commit]
