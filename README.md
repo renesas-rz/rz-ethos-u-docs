@@ -30,3 +30,8 @@ Documentation MkDocs site.
     ```
 
 The site will be generated in the `site/` directory.
+
+## License
+
+This repository is licensed under the terms of the CC BY 4.0 license
+(please see file *CC-BY-4.0* in this directory for further details).
