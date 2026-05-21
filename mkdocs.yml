@@ -1,0 +1,105 @@
+site_name: RZ/G3E NPU (Ethos-U55) Support Documentation
+site_description: Guidance on deploying and executing AI inference using the Arm Ethos-U55 on the RZ/G3E
+site_url: https://renesas-rz.github.io/rz-ethos-u-docs/
+
+repo_name: rz-ethos-u-docs
+repo_url: https://github.com/renesas-rz/rz-ethos-u-docs
+
+nav:
+  - Home: index.md
+  - Overview: overview.md
+  - Getting Started:
+    - Getting Started: getting-started/index.md
+    - Prepare Necessary Environment: getting-started/prepare-environment.md
+    - Deploy Prebuilt Binaries: getting-started/deploy-binaries.md
+    - Run Sample Applications: getting-started/run-applications.md
+  - Prepare Target AI Model:
+    - Prepare Target AI Model: prepare-models/index.md
+    - Environment Setup: prepare-models/environment-setup.md
+    - Compile AI Models with RUHMI: prepare-models/compile-models.md
+    - Test Compiled AI Models: prepare-models/test-models.md
+  - How To Build The Package:
+    - How to Build The Package: build-package/index.md
+    - Install Dependencies: build-package/install-dependencies.md
+    - Build Procedure: build-package/build-procedure.md
+    - Build SDK: build-package/build-sdk.md
+    - Binaries Location: build-package/binaries-location.md
+  - Setup And Use Network Boot:
+    - Setup And Use Network Boot: network-boot/index.md
+    - Prepare Necessary Environment: network-boot/prepare-environment.md
+    - Deploy Binaries: network-boot/deploy-binaries.md
+  - Cortex-M33 Core Firmware:
+    - Cortex-M33 Core Firmware: cm33-firmware/index.md
+    - Enable Logging: cm33-firmware/enable-logging.md
+    - Tuning Inference Timeout: cm33-firmware/tuning-timeout.md
+
+theme:
+  name: material
+  custom_dir: docs/_themes
+  favicon: assets/images/favicon.png
+  features:
+    - content.code.copy
+    - content.tabs.link
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - toc.integrate
+    - toc.follow
+  palette:
+    - primary: custom
+  logo: assets/images/logo.png
+
+copyright: >
+  &copy; {year} Renesas Electronics Corporation.
+  This work is also available under the <a href="https://creativecommons.org" target="_blank" rel="noopener">CC BY 4.0</a> license.
+
+extra:
+  footer_link:
+    - link: https://renesas-rz.github.io/rz_solution/legal_notices/
+      name: Notices & Terms
+      new_tab: true
+  social:
+    - icon: fontawesome/solid/house
+      link: https://www.renesas.com/
+      name: Go to Renesas.com website
+
+extra_css:
+  - assets/css/extra.css
+
+hooks:
+  - mkdocs_hooks.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.escapeall:
+      hardbreak: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
+  - glightbox
+  - search
+  - section-index

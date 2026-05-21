@@ -1,0 +1,68 @@
+name: documentation
+on:
+  push:
+    branches:
+      - ethos-docs
+
+env:
+  PYTHON_VERSION: 3.x
+
+permissions:
+  contents: write
+  id-token: write
+  pages: write
+
+jobs:
+  documentation:
+    name: Build Ethos Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python runtime
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Set up build cache
+        uses: actions/cache/restore@v5
+        with:
+          key: mkdocs-material-${{ hashFiles('mkdocs.yml', 'requirements.txt') }}
+          path: ~/.cache
+          restore-keys: |
+            mkdocs-material-
+
+      - name: Install Python dependencies
+        run: |
+          pip install mkdocs-material
+
+      - name: Build documentation
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          mkdocs build --clean
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v5
+
+      # Only save build cache if there is a change
+      - name: Save build cache
+        uses: actions/cache/save@v5
+        if: steps.mkdocs-cache.outputs.cache-hit != 'true'
+        with:
+          key: mkdocs-material-${{ hashFiles('mkdocs.yml', 'requirements.txt') }}
+          path: ~/.cache
