@@ -2,7 +2,7 @@ name: documentation
 on:
   push:
     branches:
-      - ethos-docs
+      - master
 
 env:
   PYTHON_VERSION: 3.x
