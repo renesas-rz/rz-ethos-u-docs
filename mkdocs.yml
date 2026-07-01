@@ -49,6 +49,14 @@ theme:
     - search.suggest
     - toc.integrate
     - toc.follow
+  nav_top:
+    btns:
+      - name: Go to Renesas RZ Linux Solutions homepage
+        url: https://renesas-rz.github.io/rz_solution/
+        image: assets/images/Explore_more_RZ_Linux_Solutions.png
+        new_tab: true
+        mobile_text_link: false
+        no_title: true
   palette:
     - primary: custom
   logo: assets/images/logo.png
