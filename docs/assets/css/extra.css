@@ -431,6 +431,204 @@
     opacity: 0 !important;
 }
 
+* navigations right top */
+/* ===================== */
+
+.md-nav-top-title {
+  display: block;
+}
+
+.md-nav-top-subtitle {
+  display: none;
+  font-weight: normal;
+}
+
+.md-nav-top-logos {
+  display: none;
+  text-align: center;
+
+  img {
+    margin: auto;
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+  }
+
+  a img {
+    margin: 0.1rem 0;
+    width: 100%;
+    height: auto;
+  }
+
+  a[target=_blank]:has(img)::after {
+    top: 0.4rem;
+    right: 0.7rem;
+  }
+}
+
+#md-nav-top-btn {
+  display: block;
+}
+
+@media screen and (min-width:76.25em) {
+  #md-nav-top-home:hover {
+    color: var(--md-default-fg-color);
+  }
+
+  #md-nav-top-home {
+    display: none;
+  }
+
+  #md-nav-top-home + span {
+    display: block:
+  }
+
+  .md-nav-top-subtitle,
+  .md-nav-top-logos {
+    display: block;
+  }
+
+  #md-nav-top-btn {
+    display: none;
+  }
+}
+
+@media screen and (max-width:76.25em) {
+  .md-nav__title:has(.md-nav-top-no-icon) {
+    height: 0.625em;
+  }
+
+  .md-nav-top-no-icon {
+    margin-top: -3.1em;
+  }
+
+  .md-nav-top-no-icon > #md-nav-top-home {
+    display: block;
+    left: .2rem;
+    margin: .2rem;
+    padding: 0 .4rem;
+    position: absolute;
+    right: .2rem;
+    top: .2rem;
+    font-size: large;
+  }
+
+  #md-nav-top-home + span {
+    display: none;
+  }
+
+  #md-nav-top-btn {
+    a img {
+      margin: 0.4em 0.4em 0 0.4em;
+      width: calc(100% - 0.8em);
+      object-fit: contain;
+    }
+
+    a[target=_blank]::after {
+      display: none;
+    }
+  }
+}
+
+/* navigations right top */
+/* ===================== */
+
+.md-nav-top-title {
+  display: block;
+}
+
+.md-nav-top-subtitle {
+  display: none;
+  font-weight: normal;
+}
+
+.md-nav-top-logos {
+  display: none;
+  text-align: center;
+
+  img {
+    margin: auto;
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+  }
+
+  a img {
+    margin: 0.1rem 0;
+    width: 100%;
+    height: auto;
+  }
+
+  a[target=_blank]:has(img)::after {
+    top: 0.4rem;
+    right: 0.7rem;
+  }
+}
+
+#md-nav-top-btn {
+  display: block;
+}
+
+@media screen and (min-width:76.25em) {
+  #md-nav-top-home:hover {
+    color: var(--md-default-fg-color);
+  }
+
+  #md-nav-top-home {
+    display: none;
+  }
+
+  #md-nav-top-home + span {
+    display: block:
+  }
+
+  .md-nav-top-subtitle,
+  .md-nav-top-logos {
+    display: block;
+  }
+
+  #md-nav-top-btn {
+    display: none;
+  }
+}
+
+@media screen and (max-width:76.25em) {
+  .md-nav__title:has(.md-nav-top-no-icon) {
+    height: 0.625em;
+  }
+
+  .md-nav-top-no-icon {
+    margin-top: -3.1em;
+  }
+
+  .md-nav-top-no-icon > #md-nav-top-home {
+    display: block;
+    left: .2rem;
+    margin: .2rem;
+    padding: 0 .4rem;
+    position: absolute;
+    right: .2rem;
+    top: .2rem;
+    font-size: large;
+  }
+
+  #md-nav-top-home + span {
+    display: none;
+  }
+
+  #md-nav-top-btn {
+    a img {
+      margin: 0.4em 0.4em 0 0.4em;
+      width: calc(100% - 0.8em);
+      object-fit: contain;
+    }
+
+    a[target=_blank]::after {
+      display: none;
+    }
+  }
+}
+
 /* Colour formatting for Switch Setting tables */
 .green {
   background-color: var(--renesas-secondary-color-bg-green);
