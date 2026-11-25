@@ -1,0 +1,85 @@
+# Install Dependencies
+
+## Container Environment
+
+By default, the **Docker** container engine will be used as the
+Kas container engine, but **Podman** can also be used.
+
+=== "Docker"
+
+    To install the Docker container engine on the Linux Host PC:
+
+    1. Add Docker's GPG Key.
+
+        ```bash
+        sudo apt-get update
+        sudo apt-get install ca-certificates curl
+        sudo install -m 0755 -d /etc/apt/keyrings
+        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+        sudo chmod a+r /etc/apt/keyrings/docker.asc
+        ```
+
+    1. Add official Docker repository to the APT sources.
+
+        ```bash
+        echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+        $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        sudo apt-get update
+        ```
+
+    1. Install Docker container engine packages.
+
+        ```bash
+        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        ```
+
+    1. Add user to the Docker container engine's user group.
+
+        ```bash
+        sudo groupadd docker
+        sudo usermod -aG docker $USER
+        ```
+
+    1. Log out and log back in for the changes to take effect.
+
+=== "Podman"
+
+    To install Podman on the Linux Host PC:
+
+    1. Install Podman.
+
+        ```bash
+        sudo apt update
+        sudo apt-get install podman
+        ```
+
+    1. Set Podman as the Kas container engine.
+
+        ```bash
+        export KAS_CONTAINER_ENGINE=podman
+        ```
+
+    !!! warning
+
+        Podman is not supported on Ubuntu 20.04 LTS or earlier.
+
+## Renesas Graphics and Video Codec libraries for RZ/G3E
+
+The `features/graphics.yml` and `features/codecs.yml` configuration fragments
+use the Renesas proprietary packages for the Graphics and Video Codec drivers.
+These packages are not included in this repository, and must be downloaded
+from the
+[RZ MPU Verified Linux Package [6.1-CIP]](https://www.renesas.com/en/software-tool/rz-mpu-verified-linux-package-61-cip)
+page on the Renesas website.
+
+| Proprietary Package | Version | Layer                             | Package                                                                                                                                                               |
+| ------------------- | ------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Video Codec         | 4.4.1.0 | meta-rz-features/meta-rz-codecs   | [RTK0EF0207Z00001ZJ-v4.4.1.0_EN.zip](https://www.renesas.com/en/document/swo/rz-mpu-video-codec-library-evaluation-version-v4410-rzg3e-rtk0ef0207z00001zj-v4410enzip) |
+| Graphics            | 4.2.1.0 | meta-rz-features/meta-rz-graphics | [RTK0EF0045Z0034AZJ-4.2.1.0_EN.zip](https://www.renesas.com/en/document/swo/rz-mpu-graphics-library-v4210-rzg3e-rtk0ef0045z0034azj-4210enzip)                         |
+
+Extract the `meta-rz-features` layers from each package into the root of this
+repository, so that `meta-rz-features/meta-rz-graphics` and/or
+`meta-rz-features/meta-rz-codecs` exist, before enabling the corresponding
+feature.
